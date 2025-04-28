@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UZ Water Supply Automation System</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <img src="assets/uz-logo.png" alt="University of Zimbabwe Logo" class="logo">
+        <h1>Water Supply Automation Control System</h1>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Real-time Status Panel -->
+        <section class="status-panel">
+            <h2><i class="fas fa-tint"></i> Tank Status Overview</h2>
+            <div class="status-grid">
+                <div class="status-card">
+                    <h3>Main Tank</h3>
+                    <div class="water-level-indicator">
+                        <div class="water-level-fill" id="main-tank-level"></div>
+                    </div>
+                    <p>Level: <span id="main-tank-percentage">0</span>%</p>
+                    <p>Status: <span id="main-tank-status">Loading...</span></p>
+                </div>
+                
+                <div class="status-card">
+                    <h3>Pump Control</h3>
+                    <p>Status: <span id="pump-status">OFF</span></p>
+                    <div class="control-buttons">
+                        <button id="pump-on-btn" class="btn-danger"><i class="fas fa-power-off"></i> Turn ON</button>
+                        <button id="pump-off-btn" class="btn-success"><i class="fas fa-power-off"></i> Turn OFF</button>
+                    </div>
+                    <div class="auto-control">
+                        <label class="switch">
+                            <input type="checkbox" id="auto-mode">
+                            <span class="slider round"></span>
+                        </label>
+                        <span>Auto Mode</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Visualization Section -->
+        <section class="visualization-panel">
+            <h2><i class="fas fa-chart-line"></i> Water Level Analytics</h2>
+            <div class="chart-container">
+                <canvas id="waterLevelChart"></canvas>
+            </div>
+            <div class="time-controls">
+                <button class="time-btn active" data-range="1h">1 Hour</button>
+                <button class="time-btn" data-range="6h">6 Hours</button>
+                <button class="time-btn" data-range="24h">24 Hours</button>
+                <button class="time-btn" data-range="7d">7 Days</button>
+            </div>
+        </section>
+
+        <!-- System Logs Section -->
+        <section class="logs-panel">
+            <h2><i class="fas fa-clipboard-list"></i> System Event Log</h2>
+            <div class="log-controls">
+                <input type="text" id="log-search" placeholder="Search logs...">
+                <button id="clear-logs-btn"><i class="fas fa-trash"></i> Clear Logs</button>
+            </div>
+            <div class="log-container">
+                <table id="event-log">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Event</th>
+                            <th>Severity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Logs will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- Alert Modal -->
+    <div id="alert-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="alert-title">System Alert</h3>
+            <p id="alert-message"></p>
+            <button id="alert-acknowledge">Acknowledge</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
